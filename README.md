@@ -8,7 +8,7 @@
 
 * 项目配置
 
-> React + react-router-dom + webpack4.0 + mobx
+> React + react-router-dom + webpack4.0 + Mobx
 
 * 项目启动步骤：
 
