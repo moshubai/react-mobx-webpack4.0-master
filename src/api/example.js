@@ -1,7 +1,7 @@
 import { ajax } from './'
 class Xhr {
   getChainDate = (postData = {}) => (
-    // ajax.get('api/project/chainDateList', { params: postData })
+    ajax.get('ptm/device/listPerson', { params: postData })
   )
 }
 

@@ -4,7 +4,7 @@ import example from './example'
 
 // 实例化 ajax请求对象
 const ajaxinstance = axios.create({
-  baseURL: 'http://172.28.138.54:1442',
+  baseURL: 'http://192.168.0.203:8080',
   timeout: 60000,
   headers: {
     'Content-Type': 'application/json; charset=utf-8'

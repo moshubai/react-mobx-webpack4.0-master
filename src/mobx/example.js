@@ -34,7 +34,7 @@ class Store {
 
   @action getDate = () => {
     return new Promise((resolve, reject) => {
-      resolve('返回成功')
+      resolve('好好学习，天天向上')
     })
   }
 }
