@@ -23,7 +23,7 @@ if (project.env === 'development') {
   }))
   app.use(require('webpack-hot-middleware')(compiler, {
     path: '/__webpack_hmr',
-    reload:true
+    reload: true
   }))
 
   app.use(express.static(path.resolve(project.basePath, 'public')))

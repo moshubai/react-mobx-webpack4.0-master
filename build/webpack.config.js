@@ -1,8 +1,10 @@
 const path = require('path')
 const webpack = require('webpack')
-const { env, basePath, externals, main,
+const {
+  env, basePath, externals, main,
   publicPath, globals, outDir, srcDir,
-  sourcemaps } = require('../project.config')
+  sourcemaps
+} = require('../project.config')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const PnpWebpackPlugin = require('pnp-webpack-plugin')

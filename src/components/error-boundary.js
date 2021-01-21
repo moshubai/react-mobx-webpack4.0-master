@@ -8,15 +8,18 @@ class ErrorBoundary extends React.PureComponent {
     error: null,
     errorInfo: null
   }
+
   static propTypes = {
     children: PropTypes.node
   }
+
   componentDidCatch (error, errorInfo) {
     this.setState({
       error: error,
       errorInfo: errorInfo
     })
   }
+
   render () {
     const { errorInfo, error } = this.state
     if (errorInfo) {

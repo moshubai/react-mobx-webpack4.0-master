@@ -7,7 +7,7 @@ import '../style'
 const xuhua = (Tmpl) => {
   class Xu extends Tmpl {
     state = {
-      name:'pangzhu',
+      name: 'pangzhu',
       ...this.state
     }
 
@@ -56,32 +56,62 @@ class App extends React.Component {
   }
 
   state = {
-    jinzhu: '测试count'
+    jinzhu: '测试count',
+    counters: 0
   }
 
   componentDidMount () {
     console.log(this.props)
+    document.getElementById('test').addEventListener('click', this.setCounters)
   }
 
-  upFn=() => {
+  upFn = () => {
     const { add } = this.props.example
     add()
   }
 
-  downFn=() => {
+  downFn = () => {
     const { down } = this.props.example
     down()
   }
 
+  changeVal = (v) => {
+    // this.setState({
+    //   counters: this.state.counters + v
+    // },
+    // // callBack 就是在state更新完成后执行
+    // () => {
+    //   console.log('counters', this.state.counters)
+    // }
+    // )
+    this.setState((state) => {
+      return {
+        counters:state.counters + v
+      }
+    })
+  }
+
+  setCounters = () => {
+    // setState在setTimeout和原生事件 中是同步的
+    setTimeout(() => {
+      this.changeVal(1)
+      this.changeVal(2)
+    }, 0)
+  }
+
   render () {
     const { count } = this.props.example
+    const { counters } = this.state
     return (
-      <div>
+      <React.Fragment>
         props的数字传递：{count}
         <p><Button onClick={this.upFn}>增加</Button></p>
         <p><Button onClick={this.downFn}>减少</Button></p>
         <Fnline num={count} />
-      </div>
+        <Button onClick={this.setCounters}>{counters}</Button>
+        <Button id='test'>原生：{counters}</Button>
+      </React.Fragment>
+
     )
   }
 }
