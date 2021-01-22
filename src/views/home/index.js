@@ -25,7 +25,7 @@ const HookFountion = () => {
       <p>count{count}</p>
       <Button onClick={() => setCount(count + 1)}>add</Button>
       <Input value={value} onChange={event => setValue(event.target.value)} placeholder='Basic usage' />
-      <Child addClick={addClick}/>
+      <Child addClick={addClick} />
     </div>
   )
 }
@@ -42,7 +42,27 @@ class Child extends React.PureComponent {
   }
 }
 Child.propTypes = {
-  addClick:PropTypes.func
+  addClick: PropTypes.func
+}
+
+const newComp = Comp => props => {
+  return (
+    <div className='abls'>
+      <Comp {...props} omg='omg' />
+    </div>
+  )
+}
+
+@newComp
+class HocComp extends React.Component {
+  render () {
+    console.log(this.props)
+    return (
+      <React.Fragment>
+        <div>Child............</div>
+      </React.Fragment>
+    )
+  }
 }
 
 @inject('example')
@@ -57,14 +77,6 @@ class App extends React.PureComponent {
     console.log('555')
   }
 
-  // log = () => {
-  //   console.log('这是点击事件')
-  // }
-
-  // goPage = () => {
-  //   history.push('/example')
-  // }
-
   render () {
     const { todos } = this.props.example
     return (
@@ -75,6 +87,7 @@ class App extends React.PureComponent {
         <p>
           <Button>123</Button>
         </p>
+        <HocComp a={1212}/>
         <ul>
           {todos.map((v, i) => {
             return (
