@@ -31,7 +31,7 @@ class App extends React.Component {
           点我
         </Button>
         <Button onClick={this.goPage}>
-          路由
+          路由1
         </Button>
         <ul>
           {todos.map((v, i) => {
