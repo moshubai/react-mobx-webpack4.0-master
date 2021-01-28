@@ -81,13 +81,14 @@ class App extends React.PureComponent {
     const { todos } = this.props.example
     return (
       <React.Fragment>
+
         <div>
           <HookFountion />
         </div>
         <p>
           <Button>123</Button>
         </p>
-        <HocComp a={1212}/>
+        <HocComp a={1212} />
         <ul>
           {todos.map((v, i) => {
             return (

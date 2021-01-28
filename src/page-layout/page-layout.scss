@@ -2,3 +2,12 @@
   width: 100%;
   height: 100%;
 }
+.page_path{
+  span{
+    width: 120px;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+  }
+}
