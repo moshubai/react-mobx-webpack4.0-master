@@ -44,19 +44,26 @@ class App extends React.Component {
     ]
   }
 
+  componentDidMount () {
+    history.listen(route => {
+      const { pathname } = route
+      // console.log(route, pathname)
+      const { pageList } = this.state
+      pageList.map(item => {
+        item.active = false
+        if (pathname === item.path) {
+          item.active = true
+        }
+        return item
+      })
+      this.setState({
+        pageList
+      })
+    })
+  }
+
   goPage = (v) => {
-    const { pageList } = this.state
     history.push(v.path)
-    pageList.map(item => {
-      item.active = false
-      if (v.path === item.path) {
-        item.active = true
-      }
-      return item
-    })
-    this.setState({
-      pageList
-    })
   }
 
   render () {
