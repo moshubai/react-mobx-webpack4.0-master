@@ -1,10 +1,28 @@
-.DS_STORE
-*.log
-node_modules
 coverage
-.idea
 .yarn-cache
-.vscode
-.git
 dist
 *.zip
+.DS_Store
+node_modules
+package-lock.json
+yarn.lock
+
+
+# local env files
+.env.local
+.env.*.local
+
+# Log files
+*.log
+
+
+
+# Editor directories and files
+.git
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
