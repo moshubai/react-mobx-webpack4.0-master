@@ -1,10 +1,47 @@
-import React, { useState, useEffect, useMemo, useCallback } from 'react'
+import React, { useState, useEffect, useMemo, useCallback, useContext } from 'react'
 import './home.scss'
 import { history } from 'func'
 import { Button, Input } from 'antd'
 import { observer, inject } from 'mobx-react'
 import PropTypes from 'prop-types'
+// useContext 的理解
+// const AppContext = React.createContext({ username: '备胎', title: '三备胎' })
+const themes = {
+  light: {
+    foreground: '#000000',
+    background: '#ff0000'
+  },
+  dark: {
+    foreground: '#ffffff',
+    background: '#222222'
+  }
+}
 
+const ThemeContext = React.createContext(themes.light)
+function Toolbar (props) {
+  return (
+    <div>
+      <ThemedButton />
+    </div>
+  )
+}
+
+function ThemedButton () {
+  const theme = useContext(ThemeContext)
+  return (
+    <button style={{ background: theme.background, color: theme.foreground }}>
+      I am styled by theme context!
+    </button>
+  )
+}
+// const Navbar = () => {
+//   const { username } = useContext(AppContext)
+//   return (
+//     <div className='navbar'>
+//       <p>我的名字是：{username}</p>
+//     </div>
+//   )
+// }
 const HookFountion = () => {
   const [count, setCount] = useState(0)
 
@@ -21,6 +58,16 @@ const HookFountion = () => {
 
   return (
     <div>
+      <ThemeContext.Provider value={
+        {
+          foreground: '#000000',
+          background: '#ddd'
+        }
+      }>
+      <Toolbar />
+    </ThemeContext.Provider>
+
+      <h2>===================================</h2>
       <p>hook Api 的使用</p>
       <p>count{count}</p>
       <Button onClick={() => setCount(count + 1)}>add</Button>
@@ -29,6 +76,8 @@ const HookFountion = () => {
     </div>
   )
 }
+
+//
 class Child extends React.PureComponent {
   render () {
     const { addClick } = this.props
@@ -87,7 +136,7 @@ class App extends React.PureComponent {
         <p>
           <Button>123</Button>
         </p>
-        <HocComp a={1212}/>
+        <HocComp a={1212} />
         <ul>
           {todos.map((v, i) => {
             return (
