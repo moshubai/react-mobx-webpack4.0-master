@@ -2,8 +2,7 @@ import React from 'react'
 import { observer, inject } from 'mobx-react'
 import PropTypes from 'prop-types'
 import { Button, Tag, Input, Table } from 'antd'
-import '../style'
-import Test from './test'
+import './style'
 import { withRouter } from 'react-router-dom'
 const ref = React.createRef()
 const WithRef = (WrappedComponent) => {
@@ -14,9 +13,10 @@ const WithRef = (WrappedComponent) => {
 
     componentDidMount () {
       console.log(this.props.forwardedRef.current.add())
+      console.log('this.props.forwardedRef', this.props.forwardedRef)
     }
 
-    componentWillReceiveProps (nextProps) {
+    UNSAFE_componentWillReceiveProps (nextProps) {
       console.log('Current props', this.props)
       console.log('Next props', nextProps)
     }
@@ -60,7 +60,6 @@ class App extends React.Component {
   }
 
   componentDidMount () {
-    // console.log(this.props)
     const { getDate } = this.props.example
     getDate().then((res) => {
       console.log(res)

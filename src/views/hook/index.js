@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useMemo } from 'react'
-import './home.scss'
 import { history } from 'func'
 import { Button, Input } from 'antd'
 import { observer, inject } from 'mobx-react'

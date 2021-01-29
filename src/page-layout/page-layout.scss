@@ -3,11 +3,9 @@
   height: 100%;
 }
 .page_path{
-  span{
-    width: 120px;
-    display: inline-block;
-    text-align: center;
-    cursor: pointer;
-    border-bottom: 1px solid #eee;
-  }
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding: 10px 20px;
 }

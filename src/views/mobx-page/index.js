@@ -2,7 +2,7 @@ import React from 'react'
 import { observer, inject } from 'mobx-react'
 import PropTypes from 'prop-types'
 import { Button, Tag, Input, Table } from 'antd'
-import '../style'
+import './style'
 
 const xuhua = (Tmpl) => {
   class Xu extends Tmpl {
