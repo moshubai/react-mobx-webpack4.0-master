@@ -64,8 +64,8 @@ const HookFountion = () => {
           background: '#ddd'
         }
       }>
-      <Toolbar />
-    </ThemeContext.Provider>
+        <Toolbar />
+      </ThemeContext.Provider>
 
       <h2>===================================</h2>
       <p>hook Api 的使用</p>
@@ -114,23 +114,99 @@ class HocComp extends React.Component {
   }
 }
 
+class CustomTextInputTwo extends React.Component {
+  constructor (props) {
+    super(props)
+    // 创建一个 ref 来存储 textInputTwo 的 DOM 元素
+    this.textInputTwo = React.createRef()
+    this.focusTextInputTwo = this.focusTextInputTwo.bind(this)
+  }
+
+  focusTextInputTwo () {
+    // 直接使用原生 API 使 text 输入框获得焦点
+    // 注意：我们通过 "current" 来访问 DOM 节点
+    this.textInputTwo.current.focus()
+  }
+
+  render () {
+    // console.log('this.props', this.props) // log
+    // 告诉 React 我们想把 <input> ref 关联到
+    // 构造器里创建的 `textInputTwo` 上
+    return (
+      <div>
+        <input
+          type='text'
+          ref={this.textInputTwo} />
+        <Button onClick={this.focusTextInputTwo}>Focus the text input</Button>
+
+      </div>
+    )
+  }
+}
+
+class AutoFocusTextInput extends React.Component {
+  constructor (props) {
+    super(props)
+    this.textInputTwo = React.createRef()
+  }
+
+  componentDidMount () {
+    // this.textInputTwo.current.focusTextInputTwo()
+  }
+
+  render () {
+    return (
+      <CustomTextInputTwo ref={this.textInputTwo} />
+    )
+  }
+}
+
 @inject('example')
 @observer
 
 class App extends React.PureComponent {
+  constructor (props) {
+    super(props)
+    this.tryRef = React.createRef()
+    // 创建一个 ref 来存储 textInput 的 DOM 元素
+    this.textInput = React.createRef()
+    this.focusTextInput = this.focusTextInput.bind(this)
+  }
+
   static propTypes = {
     example: PropTypes.object
   }
 
   componentDidMount () {
     console.log('555')
+    const tryRef = React.createRef()
+    console.log('ref', tryRef.current, this.tryRef.current) // log
+  }
+
+  focusTextInput () {
+    // 直接使用原生 API 使 text 输入框获得焦点
+    // 注意：我们通过 "current" 来访问 DOM 节点
+    this.textInput.current.focus()
   }
 
   render () {
     const { todos } = this.props.example
     return (
       <React.Fragment>
-
+        <h1 ref={this.tryRef}>Refs</h1>
+        <div>
+          <input
+            type='text'
+            ref={this.textInput} />
+          <input
+            type='button'
+            value='Focus the text input'
+            onClick={this.focusTextInput}
+          />
+        </div>
+        <h2>
+          <AutoFocusTextInput />
+        </h2>
         <div>
           <HookFountion />
         </div>

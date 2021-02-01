@@ -4,6 +4,7 @@ import MobxPage from './modules/mobx-page'
 import HeightComp from './modules/height-comp'
 import ListenersEvent from './modules/listenersEvent'
 import HookPage from './modules/hook'
+import RefsPage from './modules/Refs'
 
 export default [
   ...Example,
@@ -11,5 +12,6 @@ export default [
   ...MobxPage,
   ...HeightComp,
   ...ListenersEvent,
-  ...HookPage
+  ...HookPage,
+  ...RefsPage
 ]

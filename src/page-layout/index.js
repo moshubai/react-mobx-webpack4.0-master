@@ -40,6 +40,10 @@ class App extends React.Component {
         name: 'hook学习',
         path: '/hook',
         active: false
+      }, {
+        name: 'Refs学习',
+        path: '/Refs',
+        active: false
       },
     ]
   }
