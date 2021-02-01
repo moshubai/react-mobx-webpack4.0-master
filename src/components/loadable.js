@@ -5,9 +5,11 @@ class OverLoadTmpl extends React.Component {
     super(props)
     nprogress.start()
   }
+
   componentWillUnmount () {
     nprogress.done()
   }
+
   render () {
     return null
   }

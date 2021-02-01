@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react'
-import { history } from 'func'
 import { Button, Input } from 'antd'
-import { observer, inject } from 'mobx-react'
 import PropTypes from 'prop-types'
 
 // 自定义hook 必须以use开头
@@ -25,16 +23,12 @@ const useTimer = () => {
 const FunctionComponent = () => {
   const [titleCount, setTitleCount] = useState(0)
   useEffect(() => {
-    console.log('useEffect----titleCount')
     document.title = `点击了${titleCount}次`
-    // return () => {
-    // }
   }, [titleCount])
 
   const expensive = useMemo(() => {
     console.log('expensive')
     let num = 0
-
     for (let i = 0; i < titleCount; i++) {
       num += i
     }
@@ -54,50 +48,21 @@ const FunctionComponent = () => {
   )
 }
 
-@inject('example')
-@observer
-
-class App extends React.Component {
-  static propTypes = {
-    example: PropTypes.object
-  }
-
+class HookPages extends React.Component {
   componentDidMount () {
     console.log('555')
   }
 
-  log = () => {
-    console.log('这是点击事件')
-  }
-
-  goPage = () => {
-    history.push('/example')
-  }
-
   render () {
-    const { todos } = this.props.example
     return (
       <React.Fragment>
         <div>
-          你可以用他做任何事情
+          Hook 练习
           <FunctionComponent />
         </div>
-        <Button onClick={this.log}>
-          点我
-        </Button>
-        <Button onClick={this.goPage}>
-          路由
-        </Button>
-        <ul>
-          {todos.map((v, i) => {
-            return (
-              <li key={i}>{v.title}</li>
-            )
-          })}
-        </ul>
       </React.Fragment>
     )
   }
 }
 
-export default App
+export default HookPages

@@ -11,12 +11,12 @@ export const ChildOne = () => {
   console.log('infoObj', infoObj) // log
   const { username, title } = infoObj
   return (
-        <div>
-            <h3>函数组件：使用useContext</h3>
-            <p>{username}</p>
-            <p>{title}</p>
-            <h3>函数组件：使用hook</h3>
-            <Button onClick={handleClick}>{buttonText}{name}</Button>
-        </div>
+    <div>
+      <h3>函数组件：使用useContext</h3>
+      <p>{username}</p>
+      <p>{title}</p>
+      <h3>函数组件：使用hook</h3>
+      <Button onClick={handleClick}>{buttonText}{name}</Button>
+    </div>
   )
 }
