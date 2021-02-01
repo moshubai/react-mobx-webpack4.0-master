@@ -5,6 +5,7 @@ import HeightComp from './modules/height-comp'
 import ListenersEvent from './modules/listenersEvent'
 import HookPage from './modules/hook'
 import FormPage from './modules/form'
+import RefsPage from './modules/Refs'
 
 export default [
   ...Example,
@@ -13,5 +14,6 @@ export default [
   ...HeightComp,
   ...ListenersEvent,
   ...HookPage,
-  ...FormPage
+  ...FormPage,
+  ...RefsPage
 ]
