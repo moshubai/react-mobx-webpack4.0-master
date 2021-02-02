@@ -1,60 +1,39 @@
 import React from 'react'
 import { observer, inject } from 'mobx-react'
 import PropTypes from 'prop-types'
-import { Button, Tag, Input, Table } from 'antd'
-import './style'
-import { withRouter } from 'react-router-dom'
-const ref = React.createRef()
-const WithRef = (WrappedComponent) => {
-  class Enhance extends React.PureComponent {
-    static propTypes = {
+import { Divider } from 'antd'
+import './style/index.scss'
 
-    }
-
-    componentDidMount () {
-      console.log(this.props.forwardedRef.current.add())
-      console.log('this.props.forwardedRef', this.props.forwardedRef)
-    }
-
-    UNSAFE_componentWillReceiveProps (nextProps) {
-      console.log('Current props', this.props)
-      console.log('Next props', nextProps)
-    }
-
-    render () {
-      const { forwardedRef, ...rest } = this.props
-      // 把 forwardedRef 赋值给 ref
-      return <WrappedComponent {...rest} ref={forwardedRef} />
-    }
-  };
-
-  // React.forwardRef 方法会传入 props 和 ref 两个参数给其回调函数
-  // 所以这边的 ref 是由 React.forwardRef 提供的
-
-  return React.forwardRef((props, ref) => {
-    return <Enhance forwardedRef={ref} {...props} />
-  })
+const newComp = Comp => props => {
+  return (
+    <div className='abls'>
+      <Comp {...props} omg='omg' />
+    </div>
+  )
 }
-@WithRef
-class Aaa extends React.PureComponent {
-  state = {
-    name: '666'
-  }
 
-  add () {
-    console.log('9999')
+@newComp
+class HocComp extends React.Component {
+  static propTypes = {
+    a: PropTypes.string,
+    omg: PropTypes.string,
   }
 
   render () {
+    console.log(this.props)
+    const { a, omg } = this.props
     return (
-      <p><Button>点击</Button></p>
+      <React.Fragment>
+        <div>Child.......被包裹后获取信息
+            a:{a},omg:{omg}
+        </div>
+      </React.Fragment>
     )
   }
 }
 @inject('example')
 @observer
-
-class App extends React.Component {
+class HocComponent extends React.Component {
   static propTypes = {
     example: PropTypes.object
   }
@@ -66,17 +45,15 @@ class App extends React.Component {
     })
   }
 
-  add = () => {
-    console.log(ref)
-  }
-
   render () {
     return (
-      <div onClick={this.add}>
-        点击吗？
-        <Aaa ref={ref} />
-      </div>
+      <React.Fragment>
+        <div>
+          <Divider orientation='left'>高阶组件(hoc)实践</Divider>
+          <HocComp a={1212} />
+        </div>
+      </React.Fragment>
     )
   }
 }
-export default App
+export default HocComponent

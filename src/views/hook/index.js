@@ -1,52 +1,13 @@
 import React, { useState, useEffect, useMemo } from 'react'
-import { Button, Input } from 'antd'
+import { Button, Input, Divider } from 'antd'
 import PropTypes from 'prop-types'
 
-// 自定义hook 必须以use开头
-const useTimer = () => {
-  const [date, setDate] = useState(new Date())
-  // 解决 hook useEffect 内存泄露问题
-  // 必须最外层调用
-  // 必须函数组件中调用，或者自定义hook调用
-  useEffect(() => {
-    window.timer = setInterval(() => {
-      setDate(new Date())
-    }, 1000)
-    return () => {
-      clearInterval(window.timer)
-      window.timer = null
-    }
-  }, [])
-  return date
-}
-
-const FunctionComponent = () => {
-  const [titleCount, setTitleCount] = useState(0)
-  useEffect(() => {
-    document.title = `点击了${titleCount}次`
-  }, [titleCount])
-
-  const expensive = useMemo(() => {
-    console.log('expensive')
-    let num = 0
-    for (let i = 0; i < titleCount; i++) {
-      num += i
-    }
-
-    return num
-  }, [titleCount])
-
-  const [value, setValue] = useState('')
-
-  return (
-    <div>
-      {useTimer().toLocaleTimeString()}
-      <p><Button onClick={() => setTitleCount(titleCount + 1)}>点击事件</Button></p>
-      <p>expensive:{expensive}</p>
-      <Input value={value} onChange={event => setValue(event.target.value)} placeholder='Basic usage' />
-    </div>
-  )
-}
+// templ
+import UseStateTepl from './tmpl/Hook-useState'
+import UseEffectTepl from './tmpl/Hook-useEffect'
+import UseMemoTepl from './tmpl/Hook-useMemo'
+import UseCallbackTepl from './tmpl/Hook-useCallback'
+import UseContextTepl from './tmpl/Hook-useContext'
 
 class HookPages extends React.Component {
   componentDidMount () {
@@ -57,8 +18,35 @@ class HookPages extends React.Component {
     return (
       <React.Fragment>
         <div>
-          Hook 练习
-          <FunctionComponent />
+          <h1 >Hook的使用：</h1>
+          <p><em>必须函数组件中调用，或者自定义hook调用</em></p>
+          <p><em>必须最外层调用</em></p>
+          <Divider orientation='left'>useState</Divider>
+          <UseStateTepl />
+          <Divider orientation='left'>useEffect  和自定义Hook</Divider>
+          <p><em>必须解决 hook useEffect 内存泄露问题 使用()=>{}</em></p>
+          <p><em>自定义hook 必须以use开头</em></p>
+          <p><em>useEffect 可以多次使用在一个 函数组件中</em></p>
+          <p>
+            声明周期相当于：
+            [] 作为第二个参数有点类似于 componentDidMount 和 componentWillUnmount 的思维模式；
+
+          </p>
+          <UseEffectTepl/>
+
+          <Divider orientation='left'>useMemo</Divider>
+          <p><em>解决重复渲染的性能问题</em></p>
+          <UseMemoTepl/>
+
+          <Divider orientation='left'>useCallback</Divider>
+          <UseCallbackTepl/>
+
+          <Divider orientation='left'>useContext</Divider>
+          <UseContextTepl/>
+
+          <Divider orientation='left'>useEffect</Divider>
+
+          {/* <FunctionComponent /> */}
         </div>
       </React.Fragment>
     )
