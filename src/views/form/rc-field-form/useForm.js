@@ -55,15 +55,26 @@ class FormStore {
     })
   }
 
-  validte = callback => {
+  validate = () => {
     const err = []
+    this.fieldEntities.forEach(field => {
+      const { name, rules } = field.props
+      const rule = rules && rules[0]
+      const value = this.getFieldValue(name)
+      if (rule && rule.required && (value === undefined || value === '')) {
+        err.push({
+          [name]:rule.message,
+          value
+        })
+      }
+    })
 
     return err
   }
 
   submit = () => {
     const { onFinish, onFinishFailed } = this.callbacks
-    const err = this.validte()
+    const err = this.validate()
     // 先校验this.store
     // 校验通过 执行onFinish
     // 校验失败 执行 onFinishFailed

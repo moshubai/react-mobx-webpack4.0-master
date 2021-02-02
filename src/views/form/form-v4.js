@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import Form, { Field } from './rc-field-form/index'
 import Input from './rc-field-form/input'
-import { Button } from 'antd'
+// import { Button } from 'antd'
 
 const nameRules = { required: true, message: '请输入姓名！' }
 const passworRules = { required: true, message: '请输入密码！' }
@@ -38,7 +38,7 @@ export default function MyRCFieldForm (props) {
         <Field name='password' rules={[passworRules]}>
           <Input placeholder='请输入密码' />
         </Field>
-        <Button>Submit</Button>
+        <button>Submit</button>
       </Form>
     </div>
   )
