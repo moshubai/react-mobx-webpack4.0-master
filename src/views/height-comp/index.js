@@ -50,7 +50,7 @@ class HocComponent extends React.Component {
       <React.Fragment>
         <div>
           <Divider orientation='left'>高阶组件(hoc)实践</Divider>
-          <HocComp a={1212} />
+          <HocComp a={'1212'} />
         </div>
       </React.Fragment>
     )

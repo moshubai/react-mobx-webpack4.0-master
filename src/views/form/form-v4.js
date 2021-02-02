@@ -1,6 +1,7 @@
-import React, { Component, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import Form, { Field } from './rc-field-form/index'
 import Input from './rc-field-form/input'
+import { Button } from 'antd'
 
 const nameRules = { required: true, message: '请输入姓名！' }
 const passworRules = { required: true, message: '请输入密码！' }
@@ -32,12 +33,12 @@ export default function MyRCFieldForm (props) {
       <h3>antd form实现</h3>
       <Form form={form} onFinish={onFinish} onFinishFailed={onFinishFailed}>
         <Field name='username' rules={[nameRules]}>
-          <Input placeholder='input UR Username' />
+          <Input placeholder='请输入用户名' />
         </Field>
         <Field name='password' rules={[passworRules]}>
-          <Input placeholder='input UR Password' />
+          <Input placeholder='请输入密码' />
         </Field>
-        <button>Submit</button>
+        <Button>Submit</Button>
       </Form>
     </div>
   )

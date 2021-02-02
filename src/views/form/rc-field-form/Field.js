@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
 import FieldContext from './FieldContext'
 
 // ? 因为等下我要用某个api
-export default class Field extends Component {
+export default class Field extends React.Component {
   static contextType = FieldContext;
 
   componentDidMount () {
